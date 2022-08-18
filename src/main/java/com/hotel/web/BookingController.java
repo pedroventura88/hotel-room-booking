@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @RestController
@@ -21,19 +22,22 @@ public class BookingController {
     }
 
     @PostMapping
+    @Transactional
     public ResponseEntity<Reservation> makeReservation(@RequestBody BookingRequest request) {
         try {
             Reservation reservation = service.makeReservation(request);
             return ResponseEntity.ok(reservation);
+        } catch (BookingUnavailableException e) {
+            throw new BookingUnavailableException(e.getErrors());
         } catch (Exception e) {
             throw new RuntimeException("some error goes here (makeReservation)");
         }
     }
 
-    @GetMapping("/availability")
+    @GetMapping
     public ResponseEntity<String> checkAvailability(@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         try {
-            String message = service.checkAvailability(date);
+            String message = service.checkRoomAvailability(date);
             return ResponseEntity.ok(message);
         } catch (BookingUnavailableException e) {
             throw new BookingUnavailableException(e.getErrors());
@@ -43,6 +47,7 @@ public class BookingController {
     }
 
     @PutMapping("/{id}")
+    @Transactional
     public ResponseEntity<Reservation> updateReservation(@PathVariable("id") Long id, @RequestBody BookingRequest bookingRequest) {
         try {
             Reservation reservation = service.updateReservation(id, bookingRequest);

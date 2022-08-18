@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 //Regras:
 //        - estadias n podem ser maiores do que 3 dias
@@ -34,7 +35,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public String checkAvailability(LocalDate date) throws Exception {
+    public String checkRoomAvailability(LocalDate date) throws Exception {
         if (date.isEqual(LocalDate.now())) {
             LOG.warn("Its not allowed to book at the current day");
             ExceptionFormatter ex = new ExceptionFormatter("failed on checkAvailability", "Its not allowed to book at the current day");
@@ -50,11 +51,10 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public Reservation makeReservation(BookingRequest bookingRequest) throws Exception {
+        checkRoomAvailability(bookingRequest.getCheckkIn());
+        checkDaysValidation(bookingRequest.getCheckkIn(), bookingRequest.getCheckOut());
 
-        checkAvailability(bookingRequest.getCheckkIn());
-        checkDays(bookingRequest.getCheckkIn(), bookingRequest.getCheckOut());
-
-        Reservation reservation = Reservation.builder()
+        Reservation entity = Reservation.builder()
                 .reservedBy(bookingRequest.getCustomerName())
                 .entranceDate(bookingRequest.getCheckkIn())
                 .checkOut(bookingRequest.getCheckOut())
@@ -63,19 +63,20 @@ public class ReservationServiceImpl implements ReservationService {
                 .isCanceled(false)
                 .build();
 
-        return null;
+        LOG.info(entity.toString());
+        Reservation reservation = reservationRepository.save(entity);
+        return reservation;
     }
 
-
-    private void checkDays(LocalDate checkIn, LocalDate checkOut) {
+    private void checkDaysValidation(LocalDate checkIn, LocalDate checkOut) {
         ExceptionFormatter ex;
-        Period period30DaysMax = Period.between(LocalDate.now(), checkIn);
-        if (period30DaysMax.getDays() > 30) {
+        long period30DaysMax = ChronoUnit.DAYS.between(LocalDate.now(), checkIn);
+        if (period30DaysMax > 30) {
             ex = new ExceptionFormatter("failed on 30 days max period", "The checkIn date " + checkIn + " have more then 30 days of difference");
             throw new BookingUnavailableException(ex.buildErrors());
         }
-        Period period3Days = Period.between(checkIn, checkOut);
-        if (period3Days.getDays() > 3) {
+        long period3Days = ChronoUnit.DAYS.between(checkIn, checkOut);
+        if (period3Days > 3) {
             ex = new ExceptionFormatter("failed on check 3 days difference", "The period between checkIn and checkOut is higher than 3 days");
             throw new BookingUnavailableException(ex.buildErrors());
         }
