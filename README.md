@@ -3,7 +3,8 @@
 ### Short description
 This is a Java API developed to booking a specific room in a Hotel in Cancun. <br/>
 There is no special tips to run this project. <br/>
-Its possible to find all the endpoints description on this same file, on section 'Endpoints'.
+Its possible to find all the endpoints description on this same file, on section 'Endpoints'. <br/>
+The code is available on GitHub (https://github.com/pedroventura88/hotel-room-booking), branch Master.
 
 ### Used technologies - Reference Documentation
 For further reference, please consider the following sections about what was used on developemnt of this API:
