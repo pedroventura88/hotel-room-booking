@@ -1,6 +1,6 @@
 package com.hotel.core.reservation.impl;
 
-import com.hotel.core.BookingRequest;
+import com.hotel.core.reservation.BookingRequest;
 import com.hotel.core.reservation.*;
 import com.hotel.web.exceptions.BookingNotFoundException;
 import com.hotel.web.exceptions.BookingRequestAttributesException;

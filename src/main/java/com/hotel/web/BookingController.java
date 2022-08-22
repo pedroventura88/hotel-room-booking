@@ -1,6 +1,6 @@
 package com.hotel.web;
 
-import com.hotel.core.BookingRequest;
+import com.hotel.core.reservation.BookingRequest;
 import com.hotel.core.reservation.Booking;
 import com.hotel.core.reservation.BookingService;
 import com.hotel.web.dto.BookingDto;
