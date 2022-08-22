@@ -30,11 +30,12 @@ Endpoints
 To help on test, postman collections (*Booking.postman_collection.json*) to make the requests, are available at root, on postman directory. <br/>
 For clarification, the format of date used is YYYY-MM-DD
 <br/>
-* #####bookRoom - POST
+* **bookRoom - POST** <br/>
 http://localhost:8080/v1/bookings <br/>
 All the attributes on the RequestBody are mandatory, including the customerName. For the simplicity of the test, the customer
 is being represented by an simple String. **If it was in a real case, I had used an Entity to represent customers.** <br/>
 This endpoint uses a RequestBody with the structure example bellow:<br/>
+return expected: BookingDto object created with description and Id.
 ```
 {
     "checkkIn":"2022-09-03",
@@ -42,27 +43,27 @@ This endpoint uses a RequestBody with the structure example bellow:<br/>
     "customerName":"Pedro Ventura"
 }
 ```
-return expected: BookingDto object created with description and Id.
-<br/>
 
-* #####checkAvailability - GET
+
+* **checkAvailability - GET** <br/>
 http://localhost:8080/v1/bookings/check <br/>
 Use of a mandatory queryParam (date) that represents the date to be checked (format YYYY-MM-DD). <br/>
 Example: http://localhost:8080/v1/bookings/check?date=2022-09-03 <br/>
 return expected: if is available, will return the message 'The day XXXX-XX-XX is available for booking'
 
-* #####getBookings - GET
+* **getBookings - GET** <br/>
 http://localhost:8080/v1/bookings/check <br/>
 This endpoint is not included on the challenge requirements, but it helps a little when you are testing. Also is important 
 to mention that this functionality dont have any pagination. <br/>
 There are no parameters to be passed on that functionality. <br/>
 return expected: List of all bookings not paginated.
 <br/>
-* #####updateBooking - PUT
+* **updateBooking - PUT** <br/>
 http://localhost:8080/v1/bookings/{id} <br/>
 Example: http://localhost:8080/v1/bookings/4 <br/>
 This endpoint has a path param representing the bookingId to be updated, and also a RequestBody that will contains the values to be used. <br/>
 Follow bellow an example of the RequestBody:
+return expected: BookingDto object updated with description and Id.
 ```
 {
     "checkkIn":"2022-09-03",
@@ -70,8 +71,7 @@ Follow bellow an example of the RequestBody:
     "customerName":"Pedro Ventura"
 }
 ```
-return expected: BookingDto object updated with description and Id.
-* #####cancelBooking - PATCH
+* **cancelBooking - PATCH** <br/>
 http://localhost:8080/v1/bookings/{id} <br/>
 Example: http://localhost:8080/v1/bookings/4 <br/>  
 This endpoint has a path param representing the bookingId to be canceled. To keep the track of bookings,
