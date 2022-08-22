@@ -1,12 +1,14 @@
 package com.hotel.core.reservation;
 
-import com.hotel.core.customer.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -15,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @Builder
-public class Reservation {
+public class Booking {
 
     @Id
     @GeneratedValue
@@ -25,10 +27,10 @@ public class Reservation {
     private String reservedBy;
 
     @Column(nullable = false)
-    private LocalDate entranceDate;
+    private LocalDate checkInDate;
 
     @Column(nullable = false)
-    private LocalDate checkOut;
+    private LocalDate checkOutDate;
 
     @Column(nullable = false)
     private LocalDateTime createTime;

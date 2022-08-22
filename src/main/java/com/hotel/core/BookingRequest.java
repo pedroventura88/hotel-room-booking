@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -20,6 +19,6 @@ public class BookingRequest {
     @NotNull
     private LocalDate checkOut;
 
-    @Positive
+    @NotNull(message = "null value not allowed")
     private String customerName;
 }

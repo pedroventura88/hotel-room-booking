@@ -1,6 +1,8 @@
 package com.hotel.web.exceptions.controller;
 
-import com.hotel.Errors;
+import com.hotel.core.error.Errors;
+import com.hotel.web.exceptions.BookingRequestAttributesException;
+import com.hotel.web.exceptions.BookingNotFoundException;
 import com.hotel.web.exceptions.BookingUnavailableException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,18 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(BookingUnavailableException.class)
     public ResponseEntity<Errors> bookingUnavailableException(BookingUnavailableException e) {
+        LOG.trace(e.getMessage(), e);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getErrors());
+    }
+
+    @ExceptionHandler(BookingNotFoundException.class)
+    public ResponseEntity<Errors> bookingNotFoundException(BookingNotFoundException e) {
+        LOG.trace(e.getMessage(), e);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getErrors());
+    }
+
+    @ExceptionHandler(BookingRequestAttributesException.class)
+    public ResponseEntity<Errors> bookingRequestAttributesException(BookingRequestAttributesException e) {
         LOG.trace(e.getMessage(), e);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getErrors());
     }

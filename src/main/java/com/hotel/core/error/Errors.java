@@ -1,6 +1,5 @@
-package com.hotel;
+package com.hotel.core.error;
 
-import com.hotel.core.Error;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

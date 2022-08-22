@@ -1,7 +1,7 @@
 package com.hotel.web.exceptions;
 
-import com.hotel.Errors;
-import com.hotel.core.Error;
+import com.hotel.core.error.Errors;
+import com.hotel.core.error.Error;
 
 public class ExceptionFormatter extends Errors {
     private String message;

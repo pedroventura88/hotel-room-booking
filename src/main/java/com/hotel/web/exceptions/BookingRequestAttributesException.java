@@ -2,12 +2,12 @@ package com.hotel.web.exceptions;
 
 import com.hotel.core.error.Errors;
 
-public class BookingUnavailableException extends RuntimeException {
+public class BookingRequestAttributesException extends RuntimeException {
     private static final long serialVersionID = 1L;
 
     private Errors errors;
 
-    public BookingUnavailableException(Errors errors) {
+    public BookingRequestAttributesException(Errors errors) {
         this.errors = errors;
     }
 

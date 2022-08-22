@@ -1,4 +1,4 @@
-package com.hotel.core;
+package com.hotel.core.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
