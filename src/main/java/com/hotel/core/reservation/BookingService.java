@@ -1,7 +1,5 @@
 package com.hotel.core.reservation;
 
-import com.hotel.core.BookingRequest;
-
 import java.time.LocalDate;
 import java.util.List;
 
