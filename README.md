@@ -53,7 +53,7 @@ Example: http://localhost:8080/v1/bookings/check?date=2022-09-03 <br/>
 return expected: if is available, will return the message 'The day XXXX-XX-XX is available for booking'
 
 * **getBookings - GET** <br/>
-http://localhost:8080/v1/bookings/check <br/>
+http://localhost:8080/v1/bookings <br/>
 This endpoint is not included on the challenge requirements, but it helps a little when you are testing. Also is important 
 to mention that this functionality dont have any pagination. <br/>
 There are no parameters to be passed on that functionality. <br/>
