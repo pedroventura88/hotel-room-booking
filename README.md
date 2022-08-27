@@ -58,7 +58,7 @@ This endpoint is not included on the challenge requirements, but it helps a litt
 to mention that this functionality dont have any pagination. <br/>
 There are no parameters to be passed on that functionality. <br/>
 return expected: List of all bookings not paginated.
-<br/>
+
 * **updateBooking - PUT** <br/>
 http://localhost:8080/v1/bookings/{id} <br/>
 Example: http://localhost:8080/v1/bookings/4 <br/>
