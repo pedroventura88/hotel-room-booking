@@ -58,13 +58,15 @@ This endpoint is not included on the challenge requirements, but it helps a litt
 to mention that this functionality dont have any pagination. <br/>
 There are no parameters to be passed on that functionality. <br/>
 return expected: List of all bookings not paginated.
-<br/>
+
 * **updateBooking - PUT** <br/>
 http://localhost:8080/v1/bookings/{id} <br/>
 Example: http://localhost:8080/v1/bookings/4 <br/>
 This endpoint has a path param representing the bookingId to be updated, and also a RequestBody that will contains the values to be used. <br/>
 Follow bellow an example of the RequestBody:
-return expected: BookingDto object updated with description and Id.
+return expected: BookingDto object updated with description and Id.  <br/>
+
+
 ```
 {
     "checkkIn":"2022-09-03",
@@ -72,6 +74,8 @@ return expected: BookingDto object updated with description and Id.
     "customerName":"Pedro Ventura"
 }
 ```
+
+
 * **cancelBooking - PATCH** <br/>
 http://localhost:8080/v1/bookings/{id} <br/>
 Example: http://localhost:8080/v1/bookings/4 <br/>  
