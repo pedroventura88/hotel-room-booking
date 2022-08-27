@@ -64,7 +64,9 @@ http://localhost:8080/v1/bookings/{id} <br/>
 Example: http://localhost:8080/v1/bookings/4 <br/>
 This endpoint has a path param representing the bookingId to be updated, and also a RequestBody that will contains the values to be used. <br/>
 Follow bellow an example of the RequestBody:
-return expected: BookingDto object updated with description and Id.
+return expected: BookingDto object updated with description and Id.  <br/>
+
+
 ```
 {
     "checkkIn":"2022-09-03",
