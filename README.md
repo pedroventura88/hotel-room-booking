@@ -72,6 +72,8 @@ return expected: BookingDto object updated with description and Id.
     "customerName":"Pedro Ventura"
 }
 ```
+
+
 * **cancelBooking - PATCH** <br/>
 http://localhost:8080/v1/bookings/{id} <br/>
 Example: http://localhost:8080/v1/bookings/4 <br/>  
